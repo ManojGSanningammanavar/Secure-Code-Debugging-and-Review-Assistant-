@@ -1,0 +1,26 @@
+[build] arm-none-eabi-gcc -std=c99 -Wall -Wextra -Wconversion -Wswitch-default -O2 -Iinclude
+Compiling ../src/brake/brake_controller.c
+../src/brake/brake_controller.c:36:31: warning: conversion from 'int' to 'uint16_t' may change value [-Wconversion]
+../src/brake/brake_controller.c:47:12: warning: 'limited' may be used uninitialized in this function [-Wmaybe-uninitialized]
+../src/brake/brake_controller.c:64:5: warning: switch missing default case [-Wswitch-default]
+../src/brake/brake_controller.c:126:9: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+Compiling ../src/brake/wheel_speed.c
+../src/brake/wheel_speed.c:30:25: warning: array subscript 4 is above array bounds of 'uint16_t[4]' [-Warray-bounds]
+Compiling ../src/com/can_driver.c
+../src/com/can_driver.c:69:5: warning: ignoring return value of 'Can_Transmit' declared with attribute 'warn_unused_result' [-Wunused-result]
+../src/com/can_driver.c:74:5: warning: 'strcpy' writing 32 bytes into a region of size 16 overflows the destination [-Wstringop-overflow=]
+Compiling ../src/diag/diag_service.c
+../src/diag/diag_service.c:13:20: warning: 'service_password' defined but not used [-Wunused-variable]
+../src/diag/diag_service.c:25:44: warning: comparison of integer expressions of different signedness: 'int' and 'uint8_t' [-Wsign-compare]
+../src/diag/diag_service.c:51:24: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
+../src/diag/diag_service.c:52:5: warning: format not a string literal and no format arguments [-Wformat-security]
+Compiling ../src/util/sensor_filter.c
+[cppcheck] running static analysis
+[src/diag/diag_service.c:36]: (error) Possible null pointer dereference: resp
+[src/diag/diag_service.c:41]: (error) Memory leak: resp
+[src/brake/brake_controller.c:59]: (warning) Either the condition 'count==0' is redundant or there is division by zero
+[src/brake/brake_controller.c:47]: (error) Uninitialized variable: limited
+[src/brake/wheel_speed.c:30]: (error) Array 'g_wheelHistory[4]' accessed at index 4, which is out of bounds.
+Linking brake_ecu.elf
+brake_ecu.o: in function `Brake_MonitorFaults': undefined reference to `Det_Report'
+collect2: error: ld returned 1 exit status
